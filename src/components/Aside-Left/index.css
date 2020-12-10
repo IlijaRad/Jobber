@@ -1,0 +1,54 @@
+#aside-left{
+    display: flex;
+    width: 22.5vw;
+}
+
+#side-nav{
+    width: 4vw;
+    min-width: 75px;
+    background-color: var(--grey-1);
+    padding: 15px;
+    border-top-right-radius: 22px;
+}
+
+#icon-container > div {
+    height: 46px;
+    width: 46px;
+    display: table;
+    margin-bottom: 40px;
+    cursor: pointer;
+    position: relative;
+}
+
+#icon-container > div > ion-icon{
+    display: table-cell;
+    vertical-align: middle;
+    color: #636363;
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    font-size: 24px;
+    transition: 0.2s all;
+    
+}
+
+#icon-container > div > ion-icon.selected{
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+.circle{
+    position: absolute;
+    right: -3px;
+    top: 0;
+    z-index: 1000;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+}
+.red{
+    background-color: #ee3a23;
+}
+.green{
+    background-color: #69e781;
+}

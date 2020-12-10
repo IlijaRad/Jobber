@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+:root{
+    --background-alternative: #ebeff4;
+    --secondary-color: rgb(38, 128, 235);
+    --grey-1: #ecf0f5;
+}
+
+#content{
+    display: flex;
+}
