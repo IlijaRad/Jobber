@@ -52,3 +52,28 @@
 .green{
     background-color: #69e781;
 }
+
+.filter-option{
+    margin-top: 7px;
+}
+
+.filter-option__heading{
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.filter-option__option{
+    cursor: pointer;
+    margin-bottom: 8px;
+    font-size: 14px;
+    transition: 0.2s all;
+}
+
+.filter-option__option span{
+    color: var(--secondary-color);
+}
+
+.filter-option .selected{
+    color: var(--secondary-color);
+}
