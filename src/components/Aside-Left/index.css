@@ -1,10 +1,9 @@
 #aside-left{
     display: flex;
-    width: 22.5vw;
+    width: 20vw;
 }
 
 #side-nav{
-    width: 4vw;
     min-width: 75px;
     background-color: var(--grey-1);
     padding: 15px;
@@ -32,6 +31,11 @@
     
 }
 
+#icon-container > div > ion-icon:hover + div, #icon-container > div > ion-icon:hover {
+    transform: translateY(-4px);
+}
+
+
 #icon-container > div > ion-icon.selected{
     background-color: var(--secondary-color);
     color: #fff;
@@ -45,6 +49,7 @@
     height: 14px;
     width: 14px;
     border-radius: 50%;
+    transition: 0.2s all;
 }
 .red{
     background-color: #ee3a23;
@@ -76,4 +81,49 @@
 
 .filter-option .selected{
     color: var(--secondary-color);
+}
+
+#search-filters{
+    width:18.5vw;
+    margin-top: 20px;
+}
+
+#search-filters > div{
+    width: max-content;
+    margin: 0 auto;
+}
+
+#job-location{
+    color: #6f6f6f;
+    font-size: 12px;
+}
+
+h4{
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+.search-filter.jobs{
+    margin-bottom: 30px;
+}
+.filter-group{
+    display: flex;
+    margin-bottom: 30px;
+
+}
+
+.filter-group.icon{
+    height: 30px;
+    width: 30px;
+    display: table;
+    margin-right: 15px;
+}
+
+.filter-group > div > ion-icon{
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 22px;
+    width: 100%;
+    color: var(--secondary-color);
+    background-color: var(--grey-1);
 }

@@ -1,58 +1,12 @@
-#search-filters{
-    width:18.5vw;
-    margin-top: 20px;
-}
-
-#search-filters > div{
-    width: max-content;
-    margin: 0 auto;
-}
-
-
-#job-location{
-    color: #6f6f6f;
-    font-size: 12px;
-}
-
-h4{
-    font-size: 17px;
-    text-transform: uppercase;
-}
-
-.search-filter.jobs{
-    margin-bottom: 30px;
-}
-
-.filter-group{
-    display: flex;
-    margin-bottom: 30px;
-
-}
-
-.filter-group.icon{
-    height: 30px;
-    width: 30px;
-    display: table;
-    margin-right: 15px;
-}
-
-.filter-group > div > ion-icon{
-    display: table-cell;
-    vertical-align: middle;
-    font-size: 22px;
-    width: 100%;
-    color: var(--secondary-color);
-    background-color: var(--grey-1);
-}
-
 #main-content{
     background-color: var(--background-alternative);
     min-width: 40vw;
-    width: 55vw;
-    margin: 19px auto 0 auto;
+    width: 50vw;
+    margin-top: 19px;
     border-top: 1px solid transparent;
     border-radius: 32px;
     padding: 20px;
+    flex-shrink: 0;
 }
 
 
@@ -176,23 +130,26 @@ button:hover{
     background-color: #fff;
     padding: 20px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.job-info{
+    width: 65%;
+    align-self: flex-start;
 }
 
 #job-postings .post .company-logo{
     width: 65px;
     height: 65px;
     margin-left: 20px;
+    margin-right: 20px;
 }
 
 .job-info__company{
     font-size: 22px;
     margin-bottom: 10px;
-}
-
-.job-info{
-    width: 65%;
 }
 
 .job-info__position, .job-info__date-posted{
@@ -203,7 +160,28 @@ button:hover{
     margin-bottom: 10px;
 }
 
-.post{
-    height: 100%;
-    margin-bottom: 15px;
+.job-posting__side{
+    width: 20%;
+    height: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+}
+
+.jobs-posing__side__location{
+    color: #87859c;
+    font-size: 14px;
+}
+
+.jobs-posing__side__view-details{
+    color: var(--secondary-color);
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.jobs-posing__side__view-details:hover, .filter-option__option.selected:hover{
+    color: rgba(32, 109, 200);
 }

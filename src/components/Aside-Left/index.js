@@ -29,7 +29,7 @@ export default () => {
     const mapElements = (elements, selectedIndex) => {
         return elements.map((element, ix) => { 
             return (
-                <React.Fragment>
+                <React.Fragment key={ix}>
                     {ix === selectedIndex ? <div className="filter-option__option selected" dangerouslySetInnerHTML={{ __html: element }}></div> : <div className="filter-option__option" dangerouslySetInnerHTML={{ __html: element }}></div>}
                 </React.Fragment>
             )
