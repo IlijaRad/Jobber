@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css'
 
-export default () => {
+const AsideLeft = () => {
 
     const renderNav = () => {
         return (
@@ -75,3 +75,5 @@ export default () => {
         </aside>
     )
 }
+
+export default AsideLeft;

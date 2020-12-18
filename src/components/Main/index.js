@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.css';
 import {connect} from 'react-redux';
-import {fetchPosts} from '../../actions'
+import {fetchPosts, selectPost} from '../../actions'
 
 const App = props => {
  
-    const renderPost = (company, position, date, location, logo, id) => {
-        let posted = new Date(date);
+    const renderPost = ({company, title, created_at, location, company_logo, id, type}) => {
+        let posted = new Date(created_at);
         let today = new Date();
         let dateDiff = Math.floor((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(posted.getFullYear(), posted.getMonth(), posted.getDate()) ) /(1000 * 60 * 60 * 24));
         let postedString;
@@ -15,21 +15,23 @@ const App = props => {
         else postedString = `${dateDiff} days ago`;
         
         return (
-            <div key={id} className="post" onClick={()=> alert(id)}>
-                <img className="company-logo" alt="logo" src={logo}/>
+            <div key={id} className="post">
+                <img className="company-logo" alt="logo" src={company_logo}/>
                 <div className="job-info">
                     <h3 className="job-info__company">{company}</h3>
-                    <div className="job-info__position">{position}</div>
+                    <div className="job-info__position">{title}</div>
                     <div className="job-info__date-posted">{postedString}</div>
                 </div>
                 <div className="job-posting__side">
                     <div className="jobs-posing__side__location">{location}</div>
-                    <div className="jobs-posing__side__view-details">View details</div>
+                    <div className="jobs-posing__side__view-details" onClick={() => props.selectPost(id)}>View details</div>
                 </div>
                
             </div>
         )
     }
+
+
 
     const renderSearchBox = (keyword, description, placeholder, icon) => {
         return (
@@ -48,19 +50,20 @@ const App = props => {
         return(
             <div className="icon-view">
                 <div>
-                    <ion-icon name="menu" class="list-icon"></ion-icon>
-                    <ion-icon name="grid" class="list-icon"></ion-icon>
+                    <ion-icon name="menu" class="list-icon" onClick={() => document.getElementById('job-postings').classList.remove('grid')}></ion-icon>
+                    <ion-icon name="grid" class="list-icon" onClick={() => document.getElementById('job-postings').classList.add('grid')}></ion-icon>
                 </div>
             </div> 
         )
     }
 
     const renderPosts = () => {
-        return props.posts.map((post) => {
-            return renderPost(post.company, post.title, post.created_at, post.location, post.company_logo, post.id)
+        return props.posts.list.map((post) => {
+            return renderPost(post)
         })
     }
 
+  
 
     return (
         <div id="main-content">
@@ -83,4 +86,4 @@ const mapStateToProps = state => ({
     posts: state.posts
 })
 
-export default connect(mapStateToProps, {fetchPosts})(App);
+export default connect(mapStateToProps, {fetchPosts, selectPost})(App);

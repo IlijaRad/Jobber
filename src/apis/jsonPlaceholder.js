@@ -1,7 +1,10 @@
-export default params => {
+const jsonPlaceholder = (location = '', id = undefined) => {
     return fetch('https://morning-refuge-16267.herokuapp.com/https://jobs.github.com/positions.json?' + new URLSearchParams({
-        location: params,
+        location,
+        id,
         type: "",
         description: "",
     }))
 }
+
+export default jsonPlaceholder;

@@ -2,7 +2,7 @@ import React from 'react';
 import avatar from '../../img/avatar.jpg';
 import './index.css'
 
-export default () => {
+const Header = () => {
 
     const renderLogo = () => {
         return (
@@ -49,3 +49,5 @@ export default () => {
         </header>
     )
 }
+
+export default Header;

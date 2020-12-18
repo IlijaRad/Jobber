@@ -5,7 +5,7 @@ import Main from './Main'
 import AsideRight from './Aside-Right';
 import './index.css';
 
-export default () => {
+const App = () => {
     return (
         <div id="container">
             <Header />
@@ -17,3 +17,5 @@ export default () => {
         </div>
     )
 }
+
+export default App;

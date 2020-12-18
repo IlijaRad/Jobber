@@ -122,6 +122,16 @@ button:hover{
 .list-icon:hover {
     color: rgb(115,115,115)
 }
+#job-postings{
+    display: flex;
+    flex-direction: column;
+}
+
+#job-postings.grid{
+    flex-direction: row;
+}
+
+
 
 #job-postings .post{
     width: 100%;
@@ -132,35 +142,50 @@ button:hover{
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
-    cursor: pointer;
 }
 
-.job-info{
+#job-postings.grid .post{
+    flex-shrink: 0;
+    height: 300px;
+    width: 32%;
+    margin-right: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post .job-info{
     width: 65%;
     align-self: flex-start;
 }
 
-#job-postings .post .company-logo{
+.grid .post .job-info{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.post .company-logo{
     width: 65px;
     height: 65px;
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.job-info__company{
+.post .job-info__company{
     font-size: 22px;
     margin-bottom: 10px;
 }
 
-.job-info__position, .job-info__date-posted{
+.post .job-info__position, .post .job-info__date-posted{
     font-size: 16px;
     color: #87859c;
 }
-.job-info__position{
+
+.post .job-info__position{
     margin-bottom: 10px;
 }
 
-.job-posting__side{
+.post .job-posting__side{
     width: 20%;
     height: 85px;
     display: flex;
@@ -169,19 +194,23 @@ button:hover{
     text-align: right;
 }
 
-.jobs-posing__side__location{
+.grid .post .job-posting__side{
+    width:100%;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.post .jobs-posing__side__location{
     color: #87859c;
     font-size: 14px;
 }
 
-.jobs-posing__side__view-details{
+.post .jobs-posing__side__view-details{
     color: var(--secondary-color);
-    font-size: 12px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.2s all;
+
 }
 
-.jobs-posing__side__view-details:hover, .filter-option__option.selected:hover{
+.post .jobs-posing__side__view-details:hover, .filter-option__option.selected:hover{
     color: rgba(32, 109, 200);
+    cursor: pointer;
 }
