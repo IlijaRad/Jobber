@@ -28,7 +28,7 @@ const Header = () => {
     const renderUser = (name, avatar) => {
         return (
             <div id="user">
-                <img src={avatar} alt="user image" className="avatar"/>
+                <img src={avatar} alt="user" className="avatar"/>
                 <div>
                     <div className="user__name">
                         {name}

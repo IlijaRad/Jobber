@@ -9,7 +9,6 @@
     flex-shrink: 0;
 }
 
-
 #search-wrapper{
     display: flex;
     width: 100%;
@@ -49,7 +48,6 @@
     font-size: 15px;
 }
 
-
 .input-icon{
     color: #969696;
     font-size: 18px;
@@ -85,14 +83,13 @@ button:hover{
     letter-spacing: 2px;
     font-size: 14px;
     display: block;
-    margin: 20px auto;
+    margin: 20px auto 30px auto;
 }
 
 .blue{
     background-color: var(--secondary-color);
     color: #fff;
 }
-
 
 .button-container > .icon-view {
     position: absolute;
@@ -107,7 +104,6 @@ button:hover{
     display: table;
     border-spacing: 10px 0;
 }
-
 
 .list-icon {
     border-radius: 12px;
@@ -125,13 +121,31 @@ button:hover{
 #job-postings{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
 }
 
 #job-postings.grid{
     flex-direction: row;
+    justify-content: space-between;
 }
 
+#job-postings.grid.start{
+    justify-content: flex-start;
+    
+}
 
+#job-postings.grid.start > .post {
+    margin-right: 20px;
+    width: 31.8%;
+}
+
+#job-postings.grid.start .post:nth-child(3n + 3){
+    margin-right: 0;
+}
+
+.grid .post .job-info__company{
+    font-size: 18px;
+}
 
 #job-postings .post{
     width: 100%;
@@ -144,11 +158,11 @@ button:hover{
     margin-bottom: 15px;
 }
 
+
 #job-postings.grid .post{
     flex-shrink: 0;
     height: 300px;
     width: 32%;
-    margin-right: 20px;
     flex-direction: column;
     align-items: center;
 }
@@ -165,10 +179,11 @@ button:hover{
 }
 
 .post .company-logo{
-    width: 65px;
-    height: 65px;
+    width: 75px;
+    height: 75px;
     margin-left: 20px;
     margin-right: 20px;
+    flex-shrink: 0;
 }
 
 .post .job-info__company{

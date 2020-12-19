@@ -1,9 +1,24 @@
 import React from 'react';
 import './index.css';
+import logo from '../../img/not-available.png';
 import {connect} from 'react-redux';
 import {fetchPosts, selectPost} from '../../actions'
 
 const App = props => {
+    
+    const descriptionRef = React.createRef();
+    const locationRef = React.createRef();
+
+    React.useEffect(() => {
+        if (document.querySelector("#job-postings")) {
+            if (props.posts.list.length % 2 === 0) {
+                document.querySelector("#job-postings").classList.add('start');
+            } else {
+                document.querySelector("#job-postings").classList.remove('start');
+            }
+        }
+        
+    }, [props.posts.list])
  
     const renderPost = ({company, title, created_at, location, company_logo, id, type}) => {
         let posted = new Date(created_at);
@@ -16,7 +31,7 @@ const App = props => {
         
         return (
             <div key={id} className="post">
-                <img className="company-logo" alt="logo" src={company_logo}/>
+                {company_logo ? <img className="company-logo" alt="logo" src={company_logo}/> : <img className="company-logo" alt="logo" src={logo}/>}
                 <div className="job-info">
                     <h3 className="job-info__company">{company}</h3>
                     <div className="job-info__position">{title}</div>
@@ -24,24 +39,31 @@ const App = props => {
                 </div>
                 <div className="job-posting__side">
                     <div className="jobs-posing__side__location">{location}</div>
-                    <div className="jobs-posing__side__view-details" onClick={() => props.selectPost(id)}>View details</div>
+                    <div className="jobs-posing__side__view-details" onClick={() => {props.selectPost(id); window.scrollTo(0, 0)}}>View details</div>
                 </div>
                
             </div>
         )
     }
 
+    const handleSubmit = (e, ref, type) => {
+        e.preventDefault();
+        if (type === "description") props.fetchPosts('', undefined, ref.current.value);
+        else if (type === "location") props.fetchPosts(ref.current.value);
+    }
 
 
-    const renderSearchBox = (keyword, description, placeholder, icon) => {
+
+    const renderSearchBox = (keyword, description, placeholder, icon, ref) => {
+        const type = keyword === "What" ? "description" : "location";
         return (
             <div className="search-component">
                 <div className="keyword">{keyword}</div>
                 <div className="description">{description}</div>
-                <div className="search-field">
-                    <input type="text" className = "search" placeholder={placeholder}/>
-                    <ion-icon name={icon} class="input-icon"></ion-icon>
-                </div>
+                <form className="search-field" onSubmit={e => handleSubmit(e, ref, type)} >
+                    <input type="text" className = "search" placeholder={placeholder} ref={ref}/>
+                    <button><ion-icon name={icon} class="input-icon"></ion-icon></button>
+                </form>
             </div>
         )
     }
@@ -64,15 +86,14 @@ const App = props => {
     }
 
   
-
     return (
         <div id="main-content">
             <div id="search-wrapper">
-                {renderSearchBox("What", "Job title, keywords or company", "within 25 kilometres", "search-outline")}
-                {renderSearchBox("Where", "City or state", "Singapore, Southern Malaysia", "location-outline")}          
+                {renderSearchBox("What", "Job title, keywords or company", "within 25 kilometres", "search-outline", descriptionRef)}
+                {renderSearchBox("Where", "City or state", "Singapore, Southern Malaysia", "location-outline", locationRef)}          
             </div>
             <div className="button-container">   
-                <button className="blue search" onClick={() => props.fetchPosts('London')}>Find Jobs</button>
+                <button className="blue search" onClick={() => props.fetchPosts(locationRef.current.value, undefined, descriptionRef.current.value)}>Find Jobs</button>
                 {renderViewButtons()}
             </div>      
             <div id="job-postings">

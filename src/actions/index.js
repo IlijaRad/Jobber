@@ -1,8 +1,8 @@
 import {FETCH_POSTS, SELECT_POST} from './types';
 import jsonPlaceholder from '../apis/jsonPlaceholder'
 
-export const fetchPosts = location => async dispatch => {
-    const response = await jsonPlaceholder(location);
+export const fetchPosts = (location, id, description) => async dispatch => {
+    const response = await jsonPlaceholder(location, id, description);
     const json = await response.json();
     dispatch({
         type: FETCH_POSTS,

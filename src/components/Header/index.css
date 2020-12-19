@@ -1,6 +1,7 @@
 header{
     display: flex;
     height: 10vh;
+    min-height: 75px;
     max-height: 120px;
     align-items: center;
 }

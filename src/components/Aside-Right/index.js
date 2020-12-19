@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import logo from '../../img/not-available.png';
 import './index.css'
 
 const AsideRight = props => {
@@ -13,13 +14,13 @@ const AsideRight = props => {
     }
 
     const renderAside = ({company, company_logo, title, location, description, how_to_apply}) => (
-        <>
-            <img className="company-logo" alt="company logo" src={company_logo}/>
+        <React.Fragment>
+            {company_logo ? <img className="company-logo" alt="logo" src={company_logo}/> : <img className="company-logo" alt="logo" src={logo}/> }
             <h3 className="company-name">{company}</h3>
             {renderInfo(title, location)}
             {renderInfo("Job Description", description)}
             {renderInfo("How to apply?", how_to_apply)}
-        </>
+        </React.Fragment>
     )
     
     return (

@@ -56,7 +56,7 @@ const AsideLeft = () => {
                 <div>
                     <div className="search-filter jobs">
                         <h4>Jobs in</h4>
-                        <div id="job-location">Singapore Southern malaysis</div>
+                        <div id="job-location">Singapore, Southern Malaysia</div>
                     </div>
                     {renderFilter("swap-vertical-outline", "Sort by:", ["Relevance - <span>date</span>"])}
                     {renderFilter("location-outline", "Distance:", ["Within 5 kilometres", "Within 10 kilometres" , "Within 15 kilometres"
