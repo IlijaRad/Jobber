@@ -75,6 +75,10 @@
     transition: 0.2s all;
 }
 
+.filter-option__checkbox{
+    margin-right: 4px;
+}
+
 .filter-option__option span{
     color: var(--secondary-color);
 }

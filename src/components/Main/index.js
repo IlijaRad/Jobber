@@ -11,7 +11,7 @@ const App = props => {
 
     React.useEffect(() => {
         if (document.querySelector("#job-postings")) {
-            if (props.posts.list.length % 2 === 0) {
+            if (props.posts.list.length % 3 !== 0) {
                 document.querySelector("#job-postings").classList.add('start');
             } else {
                 document.querySelector("#job-postings").classList.remove('start');
@@ -48,8 +48,8 @@ const App = props => {
 
     const handleSubmit = (e, ref, type) => {
         e.preventDefault();
-        if (type === "description") props.fetchPosts('', undefined, ref.current.value);
-        else if (type === "location") props.fetchPosts(ref.current.value);
+        if (type === "description") props.fetchPosts(null, null, ref.current.value, props.posts.full_time);
+        else if (type === "location") props.fetchPosts(ref.current.value, null, null, props.posts.full_time);
     }
 
 
@@ -93,7 +93,7 @@ const App = props => {
                 {renderSearchBox("Where", "City or state", "Singapore, Southern Malaysia", "location-outline", locationRef)}          
             </div>
             <div className="button-container">   
-                <button className="blue search" onClick={() => props.fetchPosts(locationRef.current.value, undefined, descriptionRef.current.value)}>Find Jobs</button>
+                <button className="blue search" onClick={() => props.fetchPosts(locationRef.current.value, null, descriptionRef.current.value, props.posts.full_time)}>Find Jobs</button>
                 {renderViewButtons()}
             </div>      
             <div id="job-postings">
