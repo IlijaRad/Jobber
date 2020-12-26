@@ -75,8 +75,23 @@
     transition: 0.2s all;
 }
 
+.filter-option__options{
+    display: flex;
+    flex-direction: column;
+}
+
 .filter-option__checkbox{
-    margin-right: 4px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.filter-option__label{
+    font-size: 14px;
+}
+
+.filter-option__label span{
+    font-size: 14px;
+    vertical-align: 1px;
 }
 
 .filter-option__option span{

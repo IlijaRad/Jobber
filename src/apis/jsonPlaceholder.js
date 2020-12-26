@@ -1,11 +1,12 @@
-const jsonPlaceholder = (location = null, id = null, description= null, full_time=null) => {
-
+const jsonPlaceholder = (location = null, description= null, full_time=null, locationOverwrite = null) => {
+    
     let obj = {
         location,
-        id,
         description,
         full_time
     }
+    
+    if (locationOverwrite) obj.location = locationOverwrite;
 
     for (let key of Object.keys(obj)) {
         if (!obj[key]) delete obj[key];

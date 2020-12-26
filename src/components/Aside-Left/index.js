@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {selectType} from '../../actions';
+import {selectType, fetchPosts, selectLocation} from '../../actions';
 import './index.css'
 
 const AsideLeft = props => {
@@ -28,19 +28,24 @@ const AsideLeft = props => {
         )
     }
 
-    const mapElements = (elements, selectedIndex, chkbox) => {
-
+    const mapElements = (elements, chkbox, param) => {
+        const helper = (el, param) => {
+            if (param === 'location'){
+                if (props.location === el) props.selectLocation(null);
+                else props.selectLocation(el);
+            } else props.selectType()
+        }
         return elements.map((element, ix) => { 
             return (
                 <React.Fragment key={ix}>
-                    {!chkbox ? (ix === selectedIndex ? <div className="filter-option__option selected" dangerouslySetInnerHTML={{ __html: element }}></div> : <div className="filter-option__option" dangerouslySetInnerHTML={{ __html: element }}></div>)
-                    : (<label><input className="filter-option__checkbox" type="checkbox" name="fullTime" defaultChecked={true} checked={props.full_time} onChange={() => props.selectType()}/> Full time</label>)}
+                    {!chkbox ? (<div className="filter-option__option" dangerouslySetInnerHTML={{ __html: element }}></div> )
+                    : (<label className="filter-option__label"><input className="filter-option__checkbox" type="checkbox" name="fullTime" checked={param === 'type' ? props.full_time : (element === props.location ? true : false)} onChange={() => helper(element, param)}/><span>{element}</span></label>)}
                 </React.Fragment>
             )
         })
     }
 
-    const renderFilter = (icon, heading, option, selectedIndex=-1, chkbox=false) => {
+    const renderFilter = (icon, heading, option, chkbox=false, param) => {
         return (
             <div className="filter-group">
                 <div className="filter-group icon">
@@ -48,7 +53,7 @@ const AsideLeft = props => {
                 </div>
                 <div className="filter-option">
                     <div className="filter-option__heading">{heading}</div>
-                    {mapElements(option, selectedIndex, chkbox)}
+                    <div className="filter-option__options">{mapElements(option, chkbox, param)}</div>
                 </div>
             </div>
         )
@@ -63,9 +68,8 @@ const AsideLeft = props => {
                         <div id="job-location">Singapore, Southern Malaysia</div>
                     </div>
                     {renderFilter("swap-vertical-outline", "Sort by:", ["Relevance - <span>date</span>"])}
-                    {renderFilter("location-outline", "Distance:", ["Within 5 kilometres", "Within 10 kilometres" , "Within 15 kilometres"
-                , "Within 20 kilometres", "Within 25 kilometres"], 4)}
-                    {renderFilter("briefcase-outline", "Job Type:", ["Full time"], 0, true)}
+                    {renderFilter("location-outline", "Location:", ["Berlin", "London", "Amsterdam"], true, 'location')}
+                    {renderFilter("briefcase-outline", "Job Type:", ["Full time"], true, 'type')}
                 </div> 
             </div>
         )
@@ -80,7 +84,8 @@ const AsideLeft = props => {
 }
 
 const mapStateToProps = state => ({
-    full_time: state.full_time
+    full_time: state.posts.full_time,
+    location: state.posts.location
 })
 
-export default connect(mapStateToProps, {selectType})(AsideLeft);
+export default connect(mapStateToProps, {selectType, fetchPosts, selectLocation})(AsideLeft);

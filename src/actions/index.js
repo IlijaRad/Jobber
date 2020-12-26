@@ -1,8 +1,8 @@
-import {FETCH_POSTS, SELECT_POST, SELECT_TYPE} from './types';
+import {FETCH_POSTS, SELECT_POST, SELECT_TYPE, SELECT_LOCATION} from './types';
 import jsonPlaceholder from '../apis/jsonPlaceholder'
 
-export const fetchPosts = (location, id, description, full_time) => async dispatch => {
-    const response = await jsonPlaceholder(location, id, description, full_time);
+export const fetchPosts = (location, description, full_time, locationOverwrite) => async dispatch => {
+    const response = await jsonPlaceholder(location, description, full_time, locationOverwrite);
     const json = await response.json();
     dispatch({
         type: FETCH_POSTS,
@@ -22,5 +22,12 @@ export const selectPost = id => async (dispatch, getState) => {
 export const selectType = () => {
     return {
         type: SELECT_TYPE
+    }
+}
+
+export const selectLocation = loc => {
+    return {
+        type: SELECT_LOCATION,
+        payload: loc
     }
 }

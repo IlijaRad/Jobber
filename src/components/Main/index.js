@@ -10,15 +10,15 @@ const App = props => {
     const locationRef = React.createRef();
 
     React.useEffect(() => {
+        props.fetchPosts(locationRef.current.value, descriptionRef.current.value, props.posts.full_time, props.posts.location)
         if (document.querySelector("#job-postings")) {
             if (props.posts.list.length % 3 !== 0) {
                 document.querySelector("#job-postings").classList.add('start');
             } else {
                 document.querySelector("#job-postings").classList.remove('start');
             }
-        }
-        
-    }, [props.posts.list])
+        }  
+    }, [])
  
     const renderPost = ({company, title, created_at, location, company_logo, id, type}) => {
         let posted = new Date(created_at);
@@ -48,10 +48,9 @@ const App = props => {
 
     const handleSubmit = (e, ref, type) => {
         e.preventDefault();
-        if (type === "description") props.fetchPosts(null, null, ref.current.value, props.posts.full_time);
-        else if (type === "location") props.fetchPosts(ref.current.value, null, null, props.posts.full_time);
+        if (type === "description") props.fetchPosts(null, ref.current.value, props.posts.full_time, props.posts.location);
+        else if (type === "location") props.fetchPosts(ref.current.value, null, props.posts.full_time, props.posts.location);
     }
-
 
 
     const renderSearchBox = (keyword, description, placeholder, icon, ref) => {
@@ -93,7 +92,7 @@ const App = props => {
                 {renderSearchBox("Where", "City or state", "Singapore, Southern Malaysia", "location-outline", locationRef)}          
             </div>
             <div className="button-container">   
-                <button className="blue search" onClick={() => props.fetchPosts(locationRef.current.value, null, descriptionRef.current.value, props.posts.full_time)}>Find Jobs</button>
+                <button className="blue search" onClick={() => props.fetchPosts(locationRef.current.value, descriptionRef.current.value, props.posts.full_time, props.posts.location)}>Find Jobs</button>
                 {renderViewButtons()}
             </div>      
             <div id="job-postings">
