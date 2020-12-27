@@ -1,9 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {signIn, signOut} from '../actions/index'
-import avatar from '../img/avatar.jpg'
 
 class GoogleAuth extends React.Component {
+    constructor(props) {
+        super(props);
+        this.menu = React.createRef();
+        this.user = React.createRef();
+    }
+
     componentDidMount(){
         window.gapi.load('client:auth2', async () => {
             await window.gapi.client.init({
@@ -15,8 +20,6 @@ class GoogleAuth extends React.Component {
             this.auth.isSignedIn.listen(this.onAuthChange);
         });
     }
-
-
 
     onAuthChange = isSignedIn => {
         if (isSignedIn) {
@@ -45,32 +48,55 @@ class GoogleAuth extends React.Component {
     }
 
     onSignIn = () => {
-        this.auth.signIn();  
+        try{
+            this.auth.signIn();
+        } catch (err){
+
+        }     
     }
 
     onSignOut = () => {
         this.auth.signOut();
     }
 
+    switchuser = async () => {
+        await this.auth.signOut();
+        this.auth.signIn();
+    }
+
+    openMenu = () => {
+        this.menu.current.classList.toggle('open');
+        this.menu.current.style.width = window.getComputedStyle(this.user.current).getPropertyValue('width');
+    }
+
     renderUser = () => {
         let profile = "John Johnson"
         if (this.props.isSignedIn) {
-            profile = this.auth.currentUser.get().getBasicProfile();
+            try {
+                profile = this.auth.currentUser.get().getBasicProfile();
+            } catch(err){
+
+            }
         }
 
         return (
-            <div id="user">
-                <img src={profile.getImageUrl()} alt="user" className="avatar"/>
-                <div>
-                    
-                    <div className="user__name">
-                        {profile.getEmail()}
-                    </div>
-                    <div onClick={this.onSignOut}>
-                        <ion-icon name="caret-down" class="arrow"></ion-icon>
+            <>
+                <div ref={this.user} id="user">
+                    <img src={profile.getImageUrl()} alt="user" className="avatar"/>
+                    <div>
+                        <div className="user__name">
+                            {profile.getEmail()}
+                        </div>
+                        <div onClick={this.openMenu}>
+                            <ion-icon name="caret-down" class="arrow"></ion-icon>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div ref={this.menu} className="user-menu">
+                    <div onClick={this.switchuser}>Switch Accounts</div>
+                    <div onClick={this.onSignOut}>Log Out</div>
+                </div>
+            </>
         )
     }
     

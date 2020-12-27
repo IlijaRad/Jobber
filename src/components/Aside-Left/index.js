@@ -14,11 +14,11 @@ const AsideLeft = props => {
                     </div>
                     <div>
                         <ion-icon name="notifications-outline"></ion-icon>
-                        <div className="circle red"></div> 
+                        <div className={props.isSignedIn ? "circle red" : null}></div> 
                     </div>
                     <div>
                         <ion-icon name="mail-outline"></ion-icon>
-                        <div className="circle green"></div> 
+                        <div className={props.isSignedIn ? "circle green" : null}></div> 
                     </div>
                     <div>
                         <ion-icon name="settings-outline"></ion-icon>
@@ -26,10 +26,6 @@ const AsideLeft = props => {
                 </div>
             </nav>
         )
-    }
-
-    const sortBy = () => {
-        alert('snickers');
     }
 
     const mapElements = (elements, param) => {
@@ -88,7 +84,8 @@ const AsideLeft = props => {
 
 const mapStateToProps = state => ({
     full_time: state.posts.full_time,
-    location: state.posts.location
+    location: state.posts.location,
+    isSignedIn: state.auth.isSignedIn 
 })
 
 export default connect(mapStateToProps, {selectType, fetchPosts, selectLocation})(AsideLeft);

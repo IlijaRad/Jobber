@@ -18,7 +18,7 @@ const App = props => {
                 document.querySelector("#job-postings").classList.remove('start');
             }
         }  
-    }, [])
+    }, []) // eslint-disable-line
  
     const renderPost = ({company, title, created_at, location, company_logo, id, type}) => {
         let posted = new Date(created_at);

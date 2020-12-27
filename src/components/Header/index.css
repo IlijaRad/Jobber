@@ -64,7 +64,7 @@ header nav ul a li:not(.selected):hover{
 #user{
     display: flex;
     justify-content: flex-end;
-    padding-right: 25px;
+    margin-right: 25px;
     align-items: center;
     margin-left: auto;
 }
@@ -115,4 +115,38 @@ header nav ul a li:not(.selected):hover{
     margin-right: 10px;
     width: 18px;
     height: 18px;
+}
+
+.user-menu{
+    border-radius: 8px;
+    z-index: 999;
+    background: #fff;
+    border: 1px solid #ccc;
+    position: absolute;
+    right: 25px;
+    top: 80px;
+    min-width: 150px;
+    display: none;
+    color: #3c4043;
+}
+
+.user-menu.open{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-menu > div {
+    line-height: 2.5;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.user-menu > div:not(:last-child){
+    border-bottom: 1px solid #ccc;
+}
+
+.user-menu > div:hover{
+    background: #eee;
 }
