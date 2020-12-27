@@ -70,7 +70,7 @@ button{
     transition: .2s all;
 }
 
-button:hover{
+.blue.search:hover{
     background: rgba(32, 109, 200);
 }
 

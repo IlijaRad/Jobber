@@ -69,7 +69,6 @@
 }
 
 .filter-option__option{
-    cursor: pointer;
     margin-bottom: 8px;
     font-size: 14px;
     transition: 0.2s all;
@@ -94,7 +93,8 @@
     vertical-align: 1px;
 }
 
-.filter-option__option span{
+.relevance{
+    cursor: pointer;
     color: var(--secondary-color);
 }
 

@@ -28,7 +28,11 @@ const AsideLeft = props => {
         )
     }
 
-    const mapElements = (elements, chkbox, param) => {
+    const sortBy = () => {
+        alert('snickers');
+    }
+
+    const mapElements = (elements, param) => {
         const helper = (el, param) => {
             if (param === 'location'){
                 if (props.location === el) props.selectLocation(null);
@@ -38,14 +42,13 @@ const AsideLeft = props => {
         return elements.map((element, ix) => { 
             return (
                 <React.Fragment key={ix}>
-                    {!chkbox ? (<div className="filter-option__option" dangerouslySetInnerHTML={{ __html: element }}></div> )
-                    : (<label className="filter-option__label"><input className="filter-option__checkbox" type="checkbox" name="fullTime" checked={param === 'type' ? props.full_time : (element === props.location ? true : false)} onChange={() => helper(element, param)}/><span>{element}</span></label>)}
+                    {<label className="filter-option__label"><input className="filter-option__checkbox" type="checkbox" name="fullTime" checked={param === 'type' ? props.full_time : (element === props.location ? true : false)} onChange={() => helper(element, param)}/><span>{element}</span></label>}
                 </React.Fragment>
             )
         })
     }
 
-    const renderFilter = (icon, heading, option, chkbox=false, param) => {
+    const renderFilter = (icon, heading, option, param) => {
         return (
             <div className="filter-group">
                 <div className="filter-group icon">
@@ -53,13 +56,14 @@ const AsideLeft = props => {
                 </div>
                 <div className="filter-option">
                     <div className="filter-option__heading">{heading}</div>
-                    <div className="filter-option__options">{mapElements(option, chkbox, param)}</div>
+                    <div className="filter-option__options">{mapElements(option , param)}</div>
                 </div>
             </div>
         )
     }
 
     const renderFilters = () => {
+        
         return (
             <div id="search-filters">
                 <div>
@@ -67,9 +71,8 @@ const AsideLeft = props => {
                         <h4>Jobs in</h4>
                         <div id="job-location">Singapore, Southern Malaysia</div>
                     </div>
-                    {renderFilter("swap-vertical-outline", "Sort by:", ["Relevance - <span>date</span>"])}
-                    {renderFilter("location-outline", "Location:", ["Berlin", "London", "Amsterdam"], true, 'location')}
-                    {renderFilter("briefcase-outline", "Job Type:", ["Full time"], true, 'type')}
+                    {renderFilter("location-outline", "Location:", ["Berlin", "London", "Amsterdam"], 'location')}
+                    {renderFilter("briefcase-outline", "Job Type:", ["Full time"], 'type')}
                 </div> 
             </div>
         )

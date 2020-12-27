@@ -17,9 +17,9 @@ header{
 .avatar{
     width: 45px;
     height: 45px;
-    border-radius: 8px;
-    margin-right: 20px;
-    border: 1px solid rgb(188, 191, 195);
+    border-radius: 50%;
+    margin-right: 10px;
+    
 }
 
 header nav {
@@ -74,6 +74,45 @@ header nav ul a li:not(.selected):hover{
 }
 
 .user__name{
-    margin-right: 15px;
+    margin-right: 10px;
     font-size: 14px;
+}
+
+.arrow{
+    cursor: pointer;
+}
+
+.login-with-google-btn {
+    margin: 0 20px 0 auto;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+    color: #757575;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+    background-color: white;
+}
+
+.login-with-google-btn:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.login-with-google-btn:active {
+    background-color: #eeeeee;
+}
+
+.login-with-google-btn:focus {
+    outline: none;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25), 0 0 0 3px #c8dafc;
+}
+
+.google-button__icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
 }

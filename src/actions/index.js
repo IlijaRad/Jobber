@@ -1,4 +1,4 @@
-import {FETCH_POSTS, SELECT_POST, SELECT_TYPE, SELECT_LOCATION} from './types';
+import {FETCH_POSTS, SELECT_POST, SELECT_TYPE, SELECT_LOCATION, SIGN_IN, SIGN_OUT} from './types';
 import jsonPlaceholder from '../apis/jsonPlaceholder'
 
 export const fetchPosts = (location, description, full_time, locationOverwrite) => async dispatch => {
@@ -29,5 +29,17 @@ export const selectLocation = loc => {
     return {
         type: SELECT_LOCATION,
         payload: loc
+    }
+}
+
+export const signIn = () => {
+    return {
+        type: SIGN_IN
+    }
+}
+
+export const signOut = () => {
+    return {
+        type: SIGN_OUT
     }
 }

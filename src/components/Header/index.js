@@ -1,6 +1,6 @@
 import React from 'react';
-import avatar from '../../img/avatar.jpg';
 import './index.css'
+import GoogleAuth from '../GoogleAuth'
 
 const Header = () => {
 
@@ -25,27 +25,15 @@ const Header = () => {
         )
     }
 
-    const renderUser = (name, avatar) => {
-        return (
-            <div id="user">
-                <img src={avatar} alt="user" className="avatar"/>
-                <div>
-                    <div className="user__name">
-                        {name}
-                    </div>
-                    <div>
-                        <ion-icon name="caret-down" class="arrow"></ion-icon>
-                    </div>
-                </div>
-            </div>
-        )
+    const renderUser = () => {
+        return <GoogleAuth/>
     }
 
     return (
         <header>
             {renderLogo()}
             {renderNav()}
-            {renderUser("John Johnson", avatar)}
+            {renderUser()}
         </header>
     )
 }
